@@ -1,2 +1,5 @@
-package ru.hogwarts.school.service;public class StudentService {
+package ru.hogwarts.school.service;
+
+public class StudentService {
+
 }
