@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @RestController
+
 @RequestMapping("student")
 public class StudentController {
 
