@@ -18,6 +18,7 @@ public class FacultyController {
 
     private final FacultyService facultyService;
 
+
     public FacultyController(FacultyService facultyService) {
         this.facultyService = facultyService;
     }
