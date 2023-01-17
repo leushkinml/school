@@ -4,37 +4,41 @@ import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
     private final Map<Long, Student> students = new HashMap<>();
-    private Long generatedStudentId = 1L;
+    private long generatedStudentId = 0;
 
     public Student createStudent(Student student) {
-        students.put(generatedStudentId, student);
-        generatedStudentId++;
+        student.setId(generatedStudentId++);
+        students.put(student.getId(), student);
         return student;
     }
 
-    public Student getStudentById(Long studentId) {
+    public Student getStudentById(long studentId) {
 
         return students.get(studentId);
     }
-
     public Student updateStudent(Student student) {
-        if (students.containsKey(student.getId())) {
-            students.put(student.getId(), student);
-            return student;
+        if (!students.containsKey(student.getId())) {
+            return null;
         }
-        return null;
+        students.put(student.getId(), student);
+        return student;
     }
 
-    public Student deleteStudent(Long studentId) {
+//    public Student updateStudent(Student student) {
+//        if (students.containsKey(student.getId())) {
+//            students.put(student.getId(), student);
+//            return student;
+//        }
+//        return null;
+//    }
+
+    public Student deleteStudent(long studentId) {
 
         return students.remove(studentId);
     }
@@ -42,4 +46,14 @@ public class StudentService {
     public Collection<Student> getAllStudentInAge(int age) {
         return students.values().stream().filter(a-> a.getAge() == age).collect(Collectors.toList());
     }
+
+//    public Collection<Student> findByAge(int age) {
+//        ArrayList<Student> result = new ArrayList<>();
+//        for (Student student : students.values()) {
+//            if (student.getAge() == age) {
+//                result.add(student);
+//            }
+//        }
+//        return result;
+//    }
 }

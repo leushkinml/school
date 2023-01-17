@@ -9,6 +9,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.StudentService;
 
 import java.util.Collection;
+import java.util.Collections;
 
 @RestController
 @RequestMapping("student")
@@ -38,6 +39,14 @@ public class StudentController {
     public ResponseEntity<Collection<Student>> getAllStudentInAge(@PathVariable int studentAge) {
         return ResponseEntity.ok(studentService.getAllStudentInAge(studentAge));
     }
+
+//    @GetMapping
+//    public ResponseEntity<Collection<Student>> findStudents(@RequestParam(required = false) int age) {
+//        if (age > 0) {
+//            return ResponseEntity.ok(studentService.findByAge(age));
+//        }
+//        return ResponseEntity.ok(Collections.emptyList());
+//    }
 
     @PutMapping()
     public ResponseEntity<Student> updateStudent(@RequestBody Student student) {
